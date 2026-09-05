@@ -191,8 +191,9 @@
   .swatch{width:22px;height:22px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px var(--line);}
 
   /* quick nav cards */
-  .nav-cards{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:8px;}
-  @media(max-width:800px){.nav-cards{grid-template-columns:1fr;}}
+  .nav-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;margin-top:8px;}
+  @media(max-width:1000px){.nav-cards{grid-template-columns:1fr 1fr;}}
+  @media(max-width:640px){.nav-cards{grid-template-columns:1fr;}}
   .nav-card{
     position:relative;overflow:hidden;
     border-radius:var(--radius);padding:36px 30px;
@@ -202,6 +203,7 @@
   .nav-card:hover{transform:translateY(-4px);}
   .nav-card.a{background:linear-gradient(135deg,var(--orange),var(--pink));}
   .nav-card.b{background:linear-gradient(135deg,var(--purple),var(--blue));}
+  .nav-card.c{background:linear-gradient(135deg,var(--sage),var(--yellow));}
   .nav-card h3{color:#fff;font-size:24px;margin-bottom:8px;}
   .nav-card p{color:rgba(255,255,255,.88);font-size:14px;line-height:1.6;margin:0;}
   .nav-card .arrow{position:absolute;right:26px;bottom:26px;font-size:26px;opacity:.85;}
@@ -298,6 +300,7 @@
       <button data-page="home" class="active">Home</button>
       <button data-page="weekend">The Weekend</button>
       <button data-page="accommodation">Accommodation</button>
+      <button data-page="rsvp">RSVP</button>
     </nav>
     <a class="btn-whatsapp" href="https://wa.me/27742732934" target="_blank" rel="noopener">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.06-1.33A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2Z" fill="currentColor"/></svg>
@@ -385,6 +388,11 @@
         <button class="nav-card b" data-page="accommodation">
           <h3>Staying on the Farm</h3>
           <p>Cottages right on site for those travelling from afar. Get in touch to grab one.</p>
+          <span class="arrow">→</span>
+        </button>
+        <button class="nav-card c" data-page="rsvp">
+          <h3>RSVP</h3>
+          <p>Let us know you're coming — please reply by 20 November 2026.</p>
           <span class="arrow">→</span>
         </button>
       </div>
@@ -512,6 +520,31 @@
             Reserve a cottage
           </a>
           <a class="btn-outline" href="mailto:alikahanekom@gmail.com">Email us instead</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ================= RSVP ================= -->
+<div class="page" id="page-rsvp">
+  <section class="block" style="padding-top:64px;">
+    <div class="wrap">
+      <div class="eyebrow" style="color:var(--pink);">RSVP</div>
+      <h2>We're looking forward to hearing from you!.</h2>
+      <p class="lede">We'd love for you to join us. Please RSVP by <strong>20 November 2026</strong> so we can finalise numbers for catering, cottages and the weekend's braais.</p>
+
+      <div class="note-card">
+        <div class="eyebrow">Reply by 20 November 2026</div>
+        <p>
+          Message us on WhatsApp or drop us an email to let us know you'll be there. Feel free to leave a note if there's anything we should know.
+        </p>
+        <div class="contact-row">
+          <a class="btn-whatsapp" href="https://wa.me/27742732934?text=Hi!%20We%27d%20like%20to%20RSVP%20for%20Alika%20%26%20Adriaan%27s%20wedding.%0AAttending%3A%20Full%20weekend%20%2F%20Saturday%20only%0ANotes%3A%20" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.06-1.33A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2Z" fill="currentColor"/></svg>
+            RSVP on WhatsApp
+          </a>
+          <a class="btn-outline" href="mailto:alikahanekom@gmail.com?subject=RSVP%20-%20Alika%20%26%20Adriaan%27s%20Wedding&body=Attending%3A%20Full%20weekend%20%2F%20Saturday%20only%0ANotes%3A%20">Email your RSVP</a>
         </div>
       </div>
     </div>
