@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="color-scheme" content="light only">
+<meta name="color-scheme" content="only light">
 <title>Alika & Adriaan — 09.01.2027</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Caveat:wght@500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -23,7 +23,7 @@
     --radius:22px;
   }
   *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;color-scheme:light only;}
+  html{scroll-behavior:smooth;color-scheme:only light;}
   body{
     margin:0;
     background:var(--paper);
@@ -69,6 +69,7 @@
   .monogram{
     font-family:'Fraunces',serif;font-size:22px;font-weight:500;
     display:flex;align-items:center;gap:8px;
+    flex-shrink:0;
   }
   .monogram .amp{font-family:'Caveat',cursive;color:var(--pink);font-size:26px;}
   nav.pages{display:flex;gap:6px;background:var(--paper-2);padding:5px;border-radius:999px;border:1px solid var(--line);}
@@ -76,6 +77,7 @@
     font-family:'Jost',sans-serif;font-size:14px;letter-spacing:.02em;
     padding:9px 18px;border-radius:999px;border:none;background:transparent;
     color:var(--ink-soft);cursor:pointer;transition:all .25s ease;
+    white-space:nowrap;
   }
   nav.pages button.active{background:var(--ink);color:var(--paper);}
   .btn-whatsapp{
@@ -84,11 +86,29 @@
     font-size:14px;font-weight:500;letter-spacing:.02em;
     box-shadow:0 4px 14px rgba(139,154,91,.35);
     transition:transform .2s ease;
+    flex-shrink:0;
+    white-space:nowrap;
   }
   .btn-whatsapp:hover{transform:translateY(-2px);}
+  .btn-whatsapp svg{flex-shrink:0;}
+
   @media(max-width:720px){
-    nav.pages{order:3;width:100%;justify-content:center;}
-    .navbar{flex-wrap:wrap;}
+    .navbar{flex-wrap:wrap;gap:10px;padding:12px 18px;}
+    nav.pages{
+      order:3;width:100%;
+      justify-content:flex-start;
+      overflow-x:auto;
+      -webkit-overflow-scrolling:touch;
+      scrollbar-width:none;
+    }
+    nav.pages::-webkit-scrollbar{display:none;}
+    nav.pages button{padding:8px 14px;font-size:13px;}
+    .monogram{font-size:19px;}
+    .btn-whatsapp{padding:8px 16px;font-size:13px;}
+  }
+  @media(max-width:420px){
+    .navbar .btn-whatsapp .wa-label{display:none;}
+    .navbar .btn-whatsapp{padding:8px 12px;}
   }
 
   /* ---------- pages ---------- */
@@ -136,6 +156,9 @@
     text-transform:uppercase;
   }
   .hero-icons{position:absolute;inset:0;pointer-events:none;}
+  @media(max-width:480px){
+    .hero{padding:52px 18px 28px;}
+  }
 
   /* ---------- section shells ---------- */
   section.block{padding:64px 28px;}
@@ -144,12 +167,19 @@
     font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--sage);
     display:flex;align-items:center;gap:10px;margin-bottom:10px;
   }
-  .eyebrow::before{content:"";width:26px;height:1.5px;background:var(--sage);}
+  .eyebrow::before{content:"";width:26px;height:1.5px;background:currentColor;}
   .block h2{font-size:clamp(28px,4vw,38px);margin-bottom:18px;}
   .block .lede{color:var(--ink-soft);font-size:17px;line-height:1.7;max-width:600px;}
+  @media(max-width:480px){
+    section.block{padding:48px 20px;}
+    .wrap{padding:0 20px;}
+  }
 
   /* our day */
   .story-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;}
+  @media(max-width:700px){
+    .story-grid{grid-template-columns:1fr;gap:28px;}
+  }
   .photo-slot{
     aspect-ratio:4/5;border-radius:var(--radius);
     overflow:hidden;
@@ -164,11 +194,15 @@
   /* location + dresscode cards */
   .two-col{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
   @media(max-width:800px){.two-col{grid-template-columns:1fr;}}
+  .two-col .gift-card{grid-column:1 / -1;}
   .card{
     background:var(--paper-2);
     border:1px solid var(--line);
     border-radius:var(--radius);
     padding:32px;
+  }
+  @media(max-width:480px){
+    .card{padding:24px 20px;}
   }
   .card .icon{
     width:44px;height:44px;border-radius:50%;
@@ -183,7 +217,8 @@
     color:var(--blue);border-bottom:1px solid var(--blue);padding-bottom:1px;
   }
 
-  .attire-row{display:flex;gap:22px;margin-top:18px;}
+  .attire-example{font-size:13.5px;color:var(--ink-soft);margin:16px 0 0;font-style:italic;}
+  .attire-row{display:flex;gap:22px;margin-top:12px;}
   .attire-col{flex:1;text-align:center;}
   .attire-col svg{margin:0 auto 10px;display:block;}
   .attire-col .label{font-family:'Fraunces',serif;font-style:italic;font-size:16px;margin-bottom:4px;}
@@ -200,6 +235,9 @@
     border-radius:var(--radius);padding:36px 30px;
     color:#fff;cursor:pointer;border:none;text-align:left;font-family:inherit;
     transition:transform .25s ease;
+  }
+  @media(max-width:480px){
+    .nav-card{padding:28px 22px;}
   }
   .nav-card:hover{transform:translateY(-4px);}
   .nav-card.a{background:linear-gradient(135deg,var(--orange),var(--pink));}
@@ -269,8 +307,10 @@
     border:1px solid var(--line);border-radius:var(--radius);
     padding:30px;margin-top:36px;
   }
+  @media(max-width:480px){
+    .note-card{padding:22px 20px;}
+  }
   .note-card .eyebrow{color:var(--orange);}
-  .note-card .eyebrow::before{background:var(--orange);}
   .note-card p{color:var(--ink-soft);line-height:1.7;font-size:15px;}
   .contact-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:22px;}
   .btn-outline{
@@ -305,7 +345,7 @@
     </nav>
     <a class="btn-whatsapp" href="https://wa.me/27742732934" target="_blank" rel="noopener">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.06-1.33A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2Z" fill="currentColor"/></svg>
-      Message us
+      <span class="wa-label">Message us</span>
     </a>
   </div>
 </header>
@@ -317,7 +357,7 @@
   <section class="hero">
     <div class="hero-frame" style="border:none;background:none;padding:0;max-width:560px;">
       <p class="names" style="margin-top:0;letter-spacing:.08em;text-transform:uppercase;font-size:14px;color:var(--sage);">Alika &amp; Adriaan</p>
-      <h1 class="headline" style="margin-top:14px;">We're getting<span class="script">married</span></h1>
+      <h1 class="headline" style="margin-top:14px;">We're getting<span class="script">married!</span></h1>
       <div style="width:48px;height:1px;background:var(--ink);margin:28px auto;"></div>
       <span class="date-pill" style="border-color:var(--ink);color:var(--ink);">09 · January · 2027</span>
     </div>
@@ -361,6 +401,7 @@
           </div>
           <div class="eyebrow" style="color:var(--orange);">Dress code</div>
           <h3>Smart casual and comfortable. We’ll be on grass most of the time, so please come however you feel most comfortable!</h3>
+          <p class="attire-example">For example:</p>
           <div class="attire-row">
             <div class="attire-col">
               <svg width="46" height="52" viewBox="0 0 46 52" fill="none"><path d="M14 4 8 10v6l4-2v30h22V14l4 2v-6l-6-6-6 4-6-4Z" stroke="#2E2B24" stroke-width="1.4" stroke-linejoin="round"/></svg>
@@ -372,6 +413,21 @@
               <div class="label">for her</div>
               <div class="desc">Summer dress, sandals</div>
             </div>
+          </div>
+        </div>
+
+        <div class="card gift-card">
+          <div class="icon" style="background:#FBEAF1;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M20 12v9H4v-9M2 7h20v5H2V7Zm10 0V4a2.5 2.5 0 0 0-5 0c0 2 2.5 3 2.5 3Zm0 0V4a2.5 2.5 0 0 1 5 0c0 2-2.5 3-2.5 3Z" stroke="#D8699B" stroke-width="1.6" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="eyebrow" style="color:var(--pink);">Gifts</div>
+          <h3>A gift towards our next chapter.</h3>
+          <p>Having you there to celebrate with us is truly the greatest gift of all. If you'd still like to give something, we'd love a cash contribution towards our next chapter together, rather than a physical gift. Get in touch with Adriaan on WhatsApp for the banking details.</p>
+          <div class="contact-row">
+            <a class="btn-whatsapp" href="https://wa.me/27763020384?text=Hi%20Adriaan!%20We%27d%20like%20to%20contribute%20towards%20a%20wedding%20gift%20-%20could%20you%20share%20the%20banking%20details%3F" target="_blank" rel="noopener">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.06-1.33A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2Z" fill="currentColor"/></svg>
+              <span class="wa-label">Message Adriaan</span>
+            </a>
           </div>
         </div>
       </div>
@@ -400,18 +456,7 @@
     </div>
   </section>
 
-  <section class="block" style="background:var(--paper-2);padding-top:0;">
-    <div class="wrap">
-      <div class="eyebrow" style="color:var(--pink);">Gifts</div>
-      <h2>Just having you there is the gift.</h2>
-      <div class="card" style="max-width:600px;">
-        <div class="icon" style="background:#FBEAF1;">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M20 12v9H4v-9M2 7h20v5H2V7Zm10 0V4a2.5 2.5 0 0 0-5 0c0 2 2.5 3 2.5 3Zm0 0V4a2.5 2.5 0 0 1 5 0c0 2-2.5 3-2.5 3Z" stroke="#D8699B" stroke-width="1.6" stroke-linejoin="round"/></svg>
-        </div>
-        <p>Having you there to celebrate with us is truly the greatest gift of all. If you'd still like to give something, a contribution towards our next chapter would be deeply appreciated — we will attach a registry soon!</p>
-      </div>
-    </div>
-  </section>
+  
 
 </div>
 
@@ -421,7 +466,7 @@
     <div class="wrap">
       <div class="eyebrow">08 – 10 January 2027</div>
       <h2>The weekend, loosely.</h2>
-      <p class="lede">We're keeping the schedule light on purpose. A few fixed times below — everything else, please just your time there.</p>
+      <p class="lede">We're keeping the schedule light on purpose. A few fixed times below — everything else, please just enjoy your time.</p>
       <p class="lede">If you're staying the weekend: Please bring along comfy shoes for hiking, swimsuits, towels and lots of sunscreen. <br> If you're coming through for the Wedding: you are welcome to bring your swimsuits, towels and sunscreen!</p>
     </div>
   </section>
@@ -455,7 +500,7 @@
             </div>
             <div class="event">
               <div class="time">10:00 AM</div>
-              <div class="what"><div class="t">Ceremony</div><div class="d">We say "I do".</div></div>
+              <div class="what"><div class="t">Ceremony Begins</div><div class="d">We say "I do".</div></div>
             </div>
             <div class="event">
               <div class="time notime">all day</div>
@@ -512,7 +557,7 @@
         <p>
           There are a handful of farm cottages right where we're celebrating. We'll be handling the bookings ourselves, with first pick going to guests coming from afar so you don't have to worry about a drive home.
 
-          Message us directly to check availability and reserve your spot. Once the wedding gets closer, any remaining cottages will open up for local guests as well.
+          Message us directly to check availability and reserve your spot. The remaining cottages will open up on <strong>1 November 2026</strong> to any local guests.
         </p>
         <p style="font-size:13.5px;">Rates available on request.</p>
         <div class="contact-row">
@@ -532,7 +577,7 @@
   <section class="block" style="padding-top:64px;">
     <div class="wrap">
       <div class="eyebrow" style="color:var(--pink);">RSVP</div>
-      <h2>We're looking forward to hearing from you!.</h2>
+      <h2>We're looking forward to hearing from you!</h2>
       <p class="lede">We'd love for you to join us. Please RSVP by <strong>20 November 2026</strong> so we can finalise numbers for catering, cottages and the weekend's braais.</p>
 
       <div class="note-card">
